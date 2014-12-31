@@ -14,6 +14,15 @@
 -(void)update:(CCTime)delta
 {
     // put update code here
+    
+    //increment timeSinceObstacle, the time since the last obstacle was added
+    timeSinceObstacle += delta; //delta is ~1/60 sec
+    
+    //check if 2 seconds have passed
+    if (timeSinceObstacle > 2.0f){
+        [self addObstacle]; //adds another obstacle
+        timeSinceObstacle = 0.0f; //resets timer
+    }
 }
 
 //my own methods
@@ -21,6 +30,7 @@
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [character flap];
+    timeSinceObstacle = 0.0f;
 }
 
 @end
