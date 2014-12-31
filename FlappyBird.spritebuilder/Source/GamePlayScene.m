@@ -4,9 +4,10 @@
 
 @implementation GamePlayScene
 
-- (void)initialize
+-(void)initialize
 {
-    // your code here
+    character = (Character*)[CCBReader load:@"Character"];
+    [physicsNode addChild:character];
 }
 
 -(void)update:(CCTime)delta
@@ -14,6 +15,11 @@
     // put update code here
 }
 
-// put new methods here
+//my own methods
+//this is called every time a user touches the screen
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [character flap];
+}
 
 @end
