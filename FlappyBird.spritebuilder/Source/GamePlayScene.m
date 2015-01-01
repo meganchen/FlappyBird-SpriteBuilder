@@ -9,6 +9,7 @@
     character = (Character*)[CCBReader load:@"Character"];
     [physicsNode addChild:character]; //creates Flappybird character
     [self addObstacle]; //adds the first obstacle
+    timeSinceObstacle = 0.0f;
 }
 
 -(void)update:(CCTime)delta
@@ -20,7 +21,7 @@
     
     //check if 2 seconds have passed
     if (timeSinceObstacle > 2.0f){
-        //[self addObstacle]; //adds another obstacle
+        [self addObstacle]; //adds another obstacle
         timeSinceObstacle = 0.0f; //resets timer
     }
 }
@@ -30,7 +31,6 @@
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [character flap];
-    timeSinceObstacle = 0.0f;
 }
 
 @end
