@@ -198,12 +198,23 @@
     
     //loop the bushes
     for (CCNode *bush in _bushes) {
+        //get the world position of the bush
+        CGPoint bushWorldPosition = [_parallaxBackground convertToWorldSpace:bush.position];
+        //get the screen position of the bush
+        CGPoint bushScreenPosition = [self convertToNodeSpace:bushWorldPosition];
+        
         //move the bush
-        bush.position = ccp(bush.position.x - (character.physicsBody.velocity.x * delta), bush.position.y);
+        //bush.position = ccp(bush.position.x - (character.physicsBody.velocity.x * delta), bush.position.y);
         
         //if the left corner is a complete width off the screen, move it to the right
         if(bush.position.x <= (-1 * bush.contentSize.width)){
-            bush.position = ccp(bush.position.x + (2*bush.contentSize.width), bush.position.y);
+            for(CGPointObject *child in _parallaxBackground.parallaxArray){
+                if(child.child == bush){
+                    child.offset = ccp(child.offset.x + 2*bush.contentSize.width, child.offset.y);
+                }
+            }
+            
+            //bush.position = ccp(bush.position.x + (2*bush.contentSize.width), bush.position.y);
         }
         
     }
