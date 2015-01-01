@@ -46,6 +46,14 @@
     CCLabelTTF *_nameLabel;
     
     int points;
+    
+    //sets up parallax
+    CGPoint _cloudParallaxRatio;
+    CGPoint _bushParallaxRatio;
+    
+    CCNode *_parallaxContainer;
+    CCParallaxNode *_parallaxBackground;
+    
 }
 
 
@@ -56,10 +64,31 @@
     _clouds = @[_cloud1, _cloud2];
     _bushes = @[_bush1, _bush2];
     
+    
     for (CCNode *ground in _grounds) {
         // set collision txpe
         ground.physicsBody.collisionType = @"level";
         ground.zOrder = DrawingOrderGround;
+    }
+    
+    //parallax for clouds and bushes
+    _parallaxBackground = [CCParallaxNode node];
+    [_parallaxContainer addChild:_parallaxBackground];
+    
+    //note that the cloud ratio is smaller than the bush ratio
+    _bushParallaxRatio = ccp(0.9, 1);
+    _cloudParallaxRatio = ccp(0.5, 1);
+    
+    for(CCNode *bush in _bushes){
+        CGPoint offset = bush.position;
+        [self removeChild:bush];
+        [_parallaxBackground addChild:bush z:0 parallaxRatio: _bushParallaxRatio positionOffset:offset];
+    }
+    
+    for(CCNode *cloud in _clouds){
+        CGPoint offset = cloud.position;
+        [self removeChild:cloud];
+        [_parallaxBackground addChild:cloud z:0 parallaxRatio:_cloudParallaxRatio positionOffset:offset];
     }
     
     // set this class as delegate
