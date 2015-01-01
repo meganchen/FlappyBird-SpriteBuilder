@@ -6,7 +6,7 @@
 -(void)initialize
 {
     character = (Character*)[CCBReader load:@"Character"];
-    [physicsNode addChild:character]; //creates Flappybird character
+    [self addChild:character]; //creates Flappybird character
     [self addObstacle]; //adds the first obstacle
     timeSinceObstacle = 0.0f;
 }
