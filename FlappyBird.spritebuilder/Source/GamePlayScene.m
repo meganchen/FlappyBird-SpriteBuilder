@@ -7,8 +7,8 @@
 -(void)initialize
 {
     character = (Character*)[CCBReader load:@"Character"];
-    [physicsNode addChild:character];
-    [self addObstacle];
+    [physicsNode addChild:character]; //creates Flappybird character
+    [self addObstacle]; //adds the first obstacle
 }
 
 -(void)update:(CCTime)delta
@@ -20,7 +20,7 @@
     
     //check if 2 seconds have passed
     if (timeSinceObstacle > 2.0f){
-        [self addObstacle]; //adds another obstacle
+        //[self addObstacle]; //adds another obstacle
         timeSinceObstacle = 0.0f; //resets timer
     }
 }
