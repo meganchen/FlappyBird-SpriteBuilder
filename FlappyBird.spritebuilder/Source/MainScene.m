@@ -155,7 +155,7 @@
     }
     
     //loop the bushes
-    for (CCNode *bush in _bushes){
+    for (CCNode *bush in _bushes) {
         //move the bush
         bush.position = ccp(bush.position.x - (character.physicsBody.velocity.x * delta), bush.position.y);
         
