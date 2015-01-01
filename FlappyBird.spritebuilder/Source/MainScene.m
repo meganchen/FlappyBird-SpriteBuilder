@@ -16,11 +16,11 @@
     
     CCNode *_cloud1;
     CCNode *_cloud2;
-    CCNode *_clouds;
+    NSArray *_clouds;
     
     CCNode *_bush1;
     CCNode *_bush2;
-    CCNode *_bushes;
+    NSArray *_bushes;
     
     NSTimeInterval _sinceTouch;
     
