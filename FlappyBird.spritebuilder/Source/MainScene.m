@@ -207,36 +207,45 @@
         //bush.position = ccp(bush.position.x - (character.physicsBody.velocity.x * delta), bush.position.y);
         
         //if the left corner is a complete width off the screen, move it to the right
-        if(bush.position.x <= (-1 * bush.contentSize.width)){
-            for(CGPointObject *child in _parallaxBackground.parallaxArray){
-                if(child.child == bush){
+        //if(bush.position.x <= (-1 * bush.contentSize.width)){
+        //    bush.position = ccp(bush.position.x + (2*bush.contentSize.width), bush.position.y);
+        //}
+        
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (bushScreenPosition.x <= (-1 * bush.contentSize.width)) {
+            for (CGPointObject *child in _parallaxBackground.parallaxArray) {
+                if (child.child == bush) {
                     child.offset = ccp(child.offset.x + 2*bush.contentSize.width, child.offset.y);
                 }
             }
-            
-            //bush.position = ccp(bush.position.x + (2*bush.contentSize.width), bush.position.y);
         }
         
     }
     
     //loop the clouds
     for(CCNode *cloud in _clouds){
-        //get the world position of the cloud
+        // get the world position of the cloud
         CGPoint cloudWorldPosition = [_parallaxBackground convertToWorldSpace:cloud.position];
-        //get the screen position of the cloud
+        // get the screen position of the cloud
         CGPoint cloudScreenPosition = [self convertToNodeSpace:cloudWorldPosition];
         
         //move the cloud
         //cloud.position = ccp(cloud.position.x - (character.physicsBody.velocity.x * delta), cloud.position.y);
         
         //if the left corner is a complete width off the screen, move it to the right
-        if(cloud.position.x <=(-1 * cloud.contentSize.width)){
-            for(CGPointObject *child in _parallaxBackground.parallaxArray){
-                if(child.child == cloud){
+        //if(cloud.position.x <=(-1 * cloud.contentSize.width)){
+         //   cloud.position = ccp(cloud.position.x + (2*cloud.contentSize.width), cloud.position.y);
+        //}
+        
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (cloudScreenPosition.x <= (-1 * cloud.contentSize.width)) {
+            for (CGPointObject *child in _parallaxBackground.parallaxArray) {
+                if (child.child == cloud) {
                     child.offset = ccp(child.offset.x + 2*cloud.contentSize.width, child.offset.y);
                 }
             }
-            //cloud.position = ccp(cloud.position.x + (2*cloud.contentSize.width), cloud.position.y);
         }
     }
     
